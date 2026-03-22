@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="ToastNotificationNS" constructor="ToastNotification" version="1.0.1" display-name-key="ToastNotification" description-key="ToastNotification description" control-type="virtual" >
+    <external-service-usage enabled="false">
+    </external-service-usage>
+
+    <!-- Input Properties -->
+    <property name="Trigger" display-name-key="Trigger" description-key="Increment this value to dispatch a toast (e.g. Set(varTrigger, varTrigger + 1))" of-type="Whole.None" default-value="0" usage="input" required="true" />
+
+    <property name="Title" display-name-key="Title" description-key="Toast title text" of-type="SingleLine.Text" default-value="Notification" usage="input" required="true" />
+
+    <property name="Body" display-name-key="Body" description-key="Toast body text" of-type="SingleLine.Text" default-value="" usage="input" required="false" />
+
+    <property name="Subtitle" display-name-key="Subtitle" description-key="Subtitle text displayed below the body" of-type="SingleLine.Text" default-value="" usage="input" required="false" />
+
+    <property name="Intent" display-name-key="Intent" description-key="Toast visual style" of-type="Enum" default-value="info" usage="input" required="true">
+      <value name="info" display-name-key="Info">info</value>
+      <value name="success" display-name-key="Success">success</value>
+      <value name="warning" display-name-key="Warning">warning</value>
+      <value name="error" display-name-key="Error">error</value>
+    </property>
+
+    <property name="Position" display-name-key="Position" description-key="Toast position on screen" of-type="Enum" default-value="bottom-end" usage="input" required="true">
+      <value name="top" display-name-key="Top">top</value>
+      <value name="top-start" display-name-key="Top Start">top-start</value>
+      <value name="top-end" display-name-key="Top End">top-end</value>
+      <value name="bottom" display-name-key="Bottom">bottom</value>
+      <value name="bottom-start" display-name-key="Bottom Start">bottom-start</value>
+      <value name="bottom-end" display-name-key="Bottom End">bottom-end</value>
+    </property>
+
+    <property name="Theme" display-name-key="Theme" description-key="Fluent UI theme for toast styling" of-type="Enum" default-value="transparent" usage="input" required="true">
+      <value name="light" display-name-key="Light">light</value>
+      <value name="dark" display-name-key="Dark">dark</value>
+      <value name="high-contrast" display-name-key="High Contrast">high-contrast</value>
+      <value name="transparent" display-name-key="Transparent">transparent</value>
+    </property>
+
+    <property name="Timeout" display-name-key="Timeout" description-key="Auto-dismiss duration in milliseconds; use -1 for no auto-dismiss" of-type="Whole.None" default-value="3000" usage="input" required="true" />
+
+    <property name="PauseOnHover" display-name-key="PauseOnHover" description-key="Pause the auto-dismiss timer when the user hovers over the toast" of-type="TwoOptions" default-value="true" usage="input" required="true" />
+
+    <property name="PauseOnWindowBlur" display-name-key="PauseOnWindowBlur" description-key="Pause the auto-dismiss timer when the browser window loses focus" of-type="TwoOptions" default-value="false" usage="input" required="true" />
+
+    <property name="ActionLabel" display-name-key="ActionLabel" description-key="Label for the action link in the toast title" of-type="SingleLine.Text" default-value="" usage="input" required="false" />
+
+    <property name="DismissLabel" display-name-key="DismissLabel" description-key="Label for the dismiss link" of-type="SingleLine.Text" default-value="Dismiss" usage="input" required="false" />
+
+    <!-- Output Properties -->
+    <property name="ToastStatus" display-name-key="ToastStatus" description-key="Last toast lifecycle status" of-type="SingleLine.Text" usage="output" />
+
+    <property name="ActionClicked" display-name-key="ActionClicked" description-key="Set to true when the user clicks the action link" of-type="TwoOptions" usage="output" />
+
+    <resources>
+      <code path="index.ts" order="1"/>
+      <platform-library name="React" version="16.14.0" />
+      <platform-library name="Fluent" version="9.46.2" />
+    </resources>
+  </control>
+</manifest>
