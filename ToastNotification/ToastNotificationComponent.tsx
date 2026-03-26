@@ -52,6 +52,14 @@ const PROGRESS_CSS = `
 .fui-Toast:hover .toast-progress-bar {
   animation-play-state: paused;
 }
+.fui-Toaster {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.fui-Toaster > div {
+  animation-duration: 0.05s !important;
+  transition-duration: 0.05s !important;
+}
 `;
 
 export interface IToastNotificationProps {
@@ -62,24 +70,27 @@ export interface IToastNotificationProps {
   subtitle: string;
   intent: ToastIntent;
   position: ToastPosition;
+  paddingX: number;
+  paddingY: number;
   timeout: number;
   pauseOnHover: boolean;
-  pauseOnWindowBlur: boolean;
   actionLabel: string;
   dismissLabel: string;
   onStatusChange: (status: string) => void;
   onActionClicked: () => void;
+  onTimerEnd: () => void;
 }
 
 export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
   props,
 ) => {
-  const { trigger, theme, position, timeout, pauseOnHover, pauseOnWindowBlur } = props;
+  const { trigger, theme, position, paddingX, paddingY, timeout, pauseOnHover } = props;
   const resolvedTheme = THEME_MAP[theme] ?? webLightTheme;
 
   const toasterId = useId("toaster");
   const { dispatchToast } = useToastController(toasterId);
   const prevTriggerRef = React.useRef<number>(0);
+  const manualDismissRef = React.useRef<boolean>(false);
 
   // Use a ref for all values captured inside dispatchToast to avoid stale closures
   const propsRef = React.useRef(props);
@@ -89,11 +100,12 @@ export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
     // Dispatch toast when trigger value changes (counter incremented)
     if (trigger !== prevTriggerRef.current && trigger > 0) {
       const cur = propsRef.current;
+      manualDismissRef.current = false;
 
       // Build ToastTitle action: dismiss button if dismissLabel is set
       const dismissAction = cur.dismissLabel ? (
         <ToastTrigger>
-          <Link>{cur.dismissLabel}</Link>
+          <Link onClick={() => { manualDismissRef.current = true; }}>{cur.dismissLabel}</Link>
         </ToastTrigger>
       ) : undefined;
 
@@ -151,9 +163,11 @@ export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
           position: cur.position,
           timeout: cur.timeout,
           pauseOnHover: cur.pauseOnHover,
-          pauseOnWindowBlur: cur.pauseOnWindowBlur,
           onStatusChange: (_e, data) => {
             propsRef.current.onStatusChange?.(data.status);
+            if (data.status === "dismissed" && !manualDismissRef.current) {
+              propsRef.current.onTimerEnd?.();
+            }
           },
         },
       );
@@ -167,14 +181,16 @@ export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
       style={{ width: "100%", height: "100%", position: "relative", transform: "scale(1)", background: "transparent" }}
     >
       <style>{PROGRESS_CSS}</style>
-      <Toaster
-        toasterId={toasterId}
-        inline
-        position={position}
-        pauseOnHover={pauseOnHover}
-        pauseOnWindowBlur={pauseOnWindowBlur}
-        timeout={timeout}
-      />
+      <div style={{ position: "absolute", top: paddingY, bottom: paddingY, left: paddingX, right: paddingX }}>
+        <Toaster
+          toasterId={toasterId}
+          inline
+          position={position}
+          offset={{ horizontal: 0, vertical: 0 }}
+          pauseOnHover={pauseOnHover}
+          timeout={timeout}
+        />
+      </div>
     </FluentProvider>
   );
 };

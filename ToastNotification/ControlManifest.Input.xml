@@ -29,6 +29,10 @@
       <value name="bottom-end" display-name-key="Bottom End">bottom-end</value>
     </property>
 
+    <property name="PaddingX" display-name-key="Padding X" description-key="Horizontal padding (in pixels) between the toast and the container edge; 0 = flush" of-type="Whole.None" default-value="16" usage="input" required="false" />
+
+    <property name="PaddingY" display-name-key="Padding Y" description-key="Vertical padding (in pixels) between the toast and the container edge; 0 = flush" of-type="Whole.None" default-value="16" usage="input" required="false" />
+
     <property name="Theme" display-name-key="Theme" description-key="Fluent UI theme for toast styling" of-type="Enum" default-value="transparent" usage="input" required="true">
       <value name="light" display-name-key="Light">light</value>
       <value name="dark" display-name-key="Dark">dark</value>
@@ -40,8 +44,6 @@
 
     <property name="PauseOnHover" display-name-key="PauseOnHover" description-key="Pause the auto-dismiss timer when the user hovers over the toast" of-type="TwoOptions" default-value="true" usage="input" required="true" />
 
-    <property name="PauseOnWindowBlur" display-name-key="PauseOnWindowBlur" description-key="Pause the auto-dismiss timer when the browser window loses focus" of-type="TwoOptions" default-value="false" usage="input" required="true" />
-
     <property name="ActionLabel" display-name-key="ActionLabel" description-key="Label for the action link in the toast title" of-type="SingleLine.Text" default-value="" usage="input" required="false" />
 
     <property name="DismissLabel" display-name-key="DismissLabel" description-key="Label for the dismiss link" of-type="SingleLine.Text" default-value="Dismiss" usage="input" required="false" />
@@ -50,6 +52,8 @@
     <property name="ToastStatus" display-name-key="ToastStatus" description-key="Last toast lifecycle status" of-type="SingleLine.Text" usage="output" />
 
     <property name="ActionClicked" display-name-key="ActionClicked" description-key="Set to true when the user clicks the action link" of-type="TwoOptions" usage="output" />
+
+    <property name="OnTimerEnd" display-name-key="OnTimerEnd" description-key="Set to true when the toast auto-dismiss timer expires (not triggered by manual dismiss)" of-type="TwoOptions" usage="output" />
 
     <resources>
       <code path="index.ts" order="1"/>

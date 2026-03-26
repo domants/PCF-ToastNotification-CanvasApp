@@ -23,6 +23,7 @@ export class ToastNotification implements ComponentFramework.ReactControl<
   private _notifyOutputChanged: () => void;
   private _toastStatus = "";
   private _actionClicked = false;
+  private _timerEnd = false;
 
   // stable callback references to avoid unnecessary React re-renders
   private _onStatusChange = (status: string) => {
@@ -32,6 +33,11 @@ export class ToastNotification implements ComponentFramework.ReactControl<
 
   private _onActionClicked = () => {
     this._actionClicked = true;
+    this._notifyOutputChanged();
+  };
+
+  private _onTimerEnd = () => {
+    this._timerEnd = true;
     this._notifyOutputChanged();
   };
 
@@ -57,8 +63,6 @@ export class ToastNotification implements ComponentFramework.ReactControl<
     const subtitle = context.parameters.Subtitle?.raw ?? "";
     const timeout = context.parameters.Timeout?.raw ?? 3000;
     const pauseOnHover = context.parameters.PauseOnHover?.raw ?? true;
-    const pauseOnWindowBlur =
-      context.parameters.PauseOnWindowBlur?.raw ?? false;
     const actionLabel = context.parameters.ActionLabel?.raw ?? "";
     const dismissLabel = context.parameters.DismissLabel?.raw ?? "Dismiss";
 
@@ -79,6 +83,9 @@ export class ToastNotification implements ComponentFramework.ReactControl<
       ? positionRaw
       : "bottom-end";
 
+    const paddingX = context.parameters.PaddingX?.raw ?? 16;
+    const paddingY = context.parameters.PaddingY?.raw ?? 16;
+
     const props: IToastNotificationProps = {
       trigger,
       theme,
@@ -87,13 +94,15 @@ export class ToastNotification implements ComponentFramework.ReactControl<
       subtitle,
       intent,
       position,
+      paddingX,
+      paddingY,
       timeout,
       pauseOnHover,
-      pauseOnWindowBlur,
       actionLabel,
       dismissLabel,
       onStatusChange: this._onStatusChange,
       onActionClicked: this._onActionClicked,
+      onTimerEnd: this._onTimerEnd,
     };
 
     return React.createElement(ToastNotificationComponent, props);
@@ -103,10 +112,14 @@ export class ToastNotification implements ComponentFramework.ReactControl<
     const outputs: IOutputs = {
       ToastStatus: this._toastStatus,
       ActionClicked: this._actionClicked,
+      OnTimerEnd: this._timerEnd,
     };
-    // reset ActionClicked after it's been read by the framework
+    // reset pulse outputs after they've been read by the framework
     if (this._actionClicked) {
       this._actionClicked = false;
+    }
+    if (this._timerEnd) {
+      this._timerEnd = false;
     }
     return outputs;
   }
