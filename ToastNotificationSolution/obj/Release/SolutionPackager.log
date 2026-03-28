@@ -1,0 +1,40 @@
+2026-03-28 13:01:13.141 - Info	
+Packing E:\PCF\ToastNotification\ToastNotificationSolution\obj\Release\Metadata to bin\Release\ToastNotificationSolution.zip
+
+2026-03-28 13:01:13.151 - Info	Processing Component: Entities
+2026-03-28 13:01:13.155 - Info	Processing Component: Roles
+2026-03-28 13:01:13.157 - Info	Processing Component: Workflows
+2026-03-28 13:01:13.159 - Info	Processing Component: FieldSecurityProfiles
+2026-03-28 13:01:13.159 - Info	Processing Component: Templates
+2026-03-28 13:01:13.160 - Info	Processing Component: EntityMaps
+2026-03-28 13:01:13.160 - Info	Processing Component: EntityRelationships
+2026-03-28 13:01:13.161 - Info	Processing Component: OrganizationSettings
+2026-03-28 13:01:13.162 - Info	Processing Component: optionsets
+2026-03-28 13:01:13.162 - Info	Processing Component: CustomControls
+2026-03-28 13:01:13.167 - Info	 - CustomControl.ToastNotification
+2026-03-28 13:01:13.169 - Info	Processing Component: SolutionPluginAssemblies
+2026-03-28 13:01:13.171 - Info	Processing Component: EntityDataProviders
+2026-03-28 13:01:13.177 - Info	Processing Sharded Component Files
+2026-03-28 13:01:13.197 - Info	
+Managed Pack complete.
+
+2026-03-28 13:06:23.958 - Info	
+Packing E:\PCF\ToastNotification\ToastNotificationSolution\obj\Release\Metadata to bin\Release\ToastNotificationSolution.zip
+
+2026-03-28 13:06:23.968 - Info	Processing Component: Entities
+2026-03-28 13:06:23.970 - Info	Processing Component: Roles
+2026-03-28 13:06:23.972 - Info	Processing Component: Workflows
+2026-03-28 13:06:23.973 - Info	Processing Component: FieldSecurityProfiles
+2026-03-28 13:06:23.973 - Info	Processing Component: Templates
+2026-03-28 13:06:23.974 - Info	Processing Component: EntityMaps
+2026-03-28 13:06:23.974 - Info	Processing Component: EntityRelationships
+2026-03-28 13:06:23.977 - Info	Processing Component: OrganizationSettings
+2026-03-28 13:06:23.977 - Info	Processing Component: optionsets
+2026-03-28 13:06:23.977 - Info	Processing Component: CustomControls
+2026-03-28 13:06:23.981 - Info	 - CustomControl.ToastNotification
+2026-03-28 13:06:23.983 - Info	Processing Component: SolutionPluginAssemblies
+2026-03-28 13:06:23.985 - Info	Processing Component: EntityDataProviders
+2026-03-28 13:06:23.989 - Info	Processing Sharded Component Files
+2026-03-28 13:06:24.014 - Info	
+Managed Pack complete.
+

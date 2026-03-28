@@ -1,0 +1,2 @@
+E:\PCF\ToastNotification\ToastNotificationSolution\obj\Release\ToastNotificationSolution.cdsproj.AssemblyReference.cache
+E:\PCF\ToastNotification\ToastNotificationSolution\obj\Release\ToastNotificationSolution.cdsproj.CoreCompileInputs.cache
