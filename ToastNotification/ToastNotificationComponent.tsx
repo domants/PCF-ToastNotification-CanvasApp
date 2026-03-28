@@ -14,7 +14,11 @@ import {
   useId,
   Link,
 } from "@fluentui/react-components";
-import type { Theme, ToastIntent, ToastPosition } from "@fluentui/react-components";
+import type {
+  Theme,
+  ToastIntent,
+  ToastPosition,
+} from "@fluentui/react-components";
 
 const transparentTheme: Theme = {
   ...webLightTheme,
@@ -56,6 +60,9 @@ const PROGRESS_CSS = `
   padding: 0 !important;
   margin: 0 !important;
 }
+.fui-Toaster > .fui-ToastContainer:first-child {
+  margin-top: 0 !important;
+}
 .fui-Toaster > div {
   animation-duration: 0.05s !important;
   transition-duration: 0.05s !important;
@@ -84,7 +91,15 @@ export interface IToastNotificationProps {
 export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
   props,
 ) => {
-  const { trigger, theme, position, paddingX, paddingY, timeout, pauseOnHover } = props;
+  const {
+    trigger,
+    theme,
+    position,
+    paddingX,
+    paddingY,
+    timeout,
+    pauseOnHover,
+  } = props;
   const resolvedTheme = THEME_MAP[theme] ?? webLightTheme;
 
   const toasterId = useId("toaster");
@@ -105,7 +120,13 @@ export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
       // Build ToastTitle action: dismiss button if dismissLabel is set
       const dismissAction = cur.dismissLabel ? (
         <ToastTrigger>
-          <Link onClick={() => { manualDismissRef.current = true; }}>{cur.dismissLabel}</Link>
+          <Link
+            onClick={() => {
+              manualDismissRef.current = true;
+            }}
+          >
+            {cur.dismissLabel}
+          </Link>
         </ToastTrigger>
       ) : undefined;
 
@@ -175,22 +196,43 @@ export const ToastNotificationComponent: React.FC<IToastNotificationProps> = (
     prevTriggerRef.current = trigger;
   }, [trigger, dispatchToast]);
 
+  const containerStyle: React.CSSProperties = {
+    position: "absolute",
+    left: paddingX,
+    right: paddingX,
+  };
+
+  if (position.includes("top")) {
+    containerStyle.top = paddingY;
+  }
+
+  if (position.includes("bottom")) {
+    containerStyle.bottom = paddingY;
+  }
+
   return (
     <FluentProvider
       theme={resolvedTheme}
-      style={{ width: "100%", height: "100%", position: "relative", transform: "scale(1)", background: "transparent" }}
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        transform: "scale(1)",
+        background: "transparent",
+      }}
     >
       <style>{PROGRESS_CSS}</style>
-      <div style={{ position: "absolute", top: paddingY, bottom: paddingY, left: paddingX, right: paddingX }}>
-        <Toaster
-          toasterId={toasterId}
-          inline
-          position={position}
-          offset={{ horizontal: 0, vertical: 0 }}
-          pauseOnHover={pauseOnHover}
-          timeout={timeout}
-        />
-      </div>
+      <Toaster
+        toasterId={toasterId}
+        inline
+        position={position}
+        offset={{
+          horizontal: paddingX,
+          vertical: paddingY,
+        }}
+        pauseOnHover={pauseOnHover}
+        timeout={timeout}
+      />
     </FluentProvider>
   );
 };

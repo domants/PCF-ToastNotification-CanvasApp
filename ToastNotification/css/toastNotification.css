@@ -1,0 +1,14 @@
+.fui-Toaster {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.fui-Toaster > div {
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+.fui-ToastContainer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}

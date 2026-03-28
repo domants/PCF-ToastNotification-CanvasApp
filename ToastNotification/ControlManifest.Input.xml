@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="ToastNotificationNS" constructor="ToastNotification" version="1.0.1" display-name-key="ToastNotification" description-key="ToastNotification description" control-type="virtual" >
+  <control namespace="CustomControl" constructor="ToastNotification" version="1.0.1" display-name-key="ToastNotification" description-key="Custom toast notification for canvas app" control-type="virtual" >
     <external-service-usage enabled="false">
     </external-service-usage>
 
@@ -59,6 +59,7 @@
       <code path="index.ts" order="1"/>
       <platform-library name="React" version="16.14.0" />
       <platform-library name="Fluent" version="9.46.2" />
+      <css path="css/toastNotification.css" order="1" />
     </resources>
   </control>
 </manifest>
