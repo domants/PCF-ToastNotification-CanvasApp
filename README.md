@@ -8,7 +8,7 @@ Features include configurable position, intent-based styling, auto-dismiss with 
 
 ## Installation
 
-1. Import the solution from the `ToastNotificationSolution` folder into your Power Platform environment.
+1. Import the solution from the `ToastNotificationSolution` folder into your Power Platform environment. [Access solution file here](https://github.com/domants/PCF-ToastNotification-CanvasApp/tree/main/ToastNotificationSolution/bin/Release)
 2. In your Canvas App, go to **Insert > Get more components > Code** and add **ToastNotification**.
 
 ---
