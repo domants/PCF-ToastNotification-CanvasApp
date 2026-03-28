@@ -1,4 +1,4 @@
-# Toast Notification — PCF Control for Canvas Apps
+# Toast Notification - PCF Control for Canvas Apps
 
 A PowerApps Component Framework (PCF) virtual control that provides fully configurable toast notifications using Fluent UI v9. Built with React + TypeScript.
 
